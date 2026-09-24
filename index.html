@@ -1528,9 +1528,11 @@ const logoControl=document.getElementById('logo-size-control');
 let logoScale=1.1;
 function updateLogoSize(){
  logoControl.style.transform='scale('+logoScale+')';
- document.getElementById('logo-size-status').textContent='Logo boyutu: %'+(logoScale*100).toLocaleString('tr-TR',{maximumFractionDigits:1});
+ document.getElementById('logo-size-status').textContent='Logo büyümesi: %'+((logoScale/1.1-1)*100).toLocaleString('tr-TR',{maximumFractionDigits:1});
+ logoControl.setAttribute('aria-label',logoScale>=2.2?'Logoyu başlangıç boyutuna döndür':'Logoyu yüzde 5 büyüt');
+ logoControl.title=logoScale>=2.2?'Sonraki tıklama: başlangıç boyutuna dön':'Her tıklamada %5 büyüt; %100 büyümeden sonra sıfırla';
 }
-logoControl.onclick=()=>{logoScale*=1.05;updateLogoSize();document.getElementById('logo-size-panel').hidden=false};
+logoControl.onclick=()=>{logoScale=logoScale>=2.2?1.1:Math.min(2.2,logoScale*1.05);updateLogoSize();document.getElementById('logo-size-panel').hidden=false};
 document.getElementById('logo-size-reset').onclick=()=>{logoScale=1.1;updateLogoSize()};
 const themeToggle=document.getElementById('theme-toggle');
 function syncThemeToggle(){
