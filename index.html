@@ -319,6 +319,11 @@ header .logo{transform:scale(1.1);transform-origin:left center;margin-right:14px
 .video-card[hidden]{display:none}
 @media(max-width:940px){.video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.video-grid{grid-template-columns:1fr}}
+header button.logo{border:0;padding:0;background:none;color:inherit;font:inherit;text-align:left;cursor:zoom-in}
+header button.logo:focus-visible{outline:2px solid var(--teal);outline-offset:5px}
+#logo-size-panel{position:fixed;right:16px;bottom:16px;z-index:100;display:flex;gap:16px;align-items:center;padding:12px 16px;background:var(--surface);color:var(--text);border:1px solid var(--line2);border-radius:10px;box-shadow:0 8px 30px #0003;font-size:.82rem}
+#logo-size-panel[hidden]{display:none}
+#logo-size-reset{padding:7px 11px;border:1px solid var(--line2);border-radius:5px;color:var(--text);background:var(--surface2);cursor:pointer}
 </style>
 </head>
 <body>
@@ -326,7 +331,7 @@ header .logo{transform:scale(1.1);transform-origin:left center;margin-right:14px
 
 <header>
   <div class="hdr">
-    <a href="#/" class="logo">
+    <button type="button" class="logo" id="logo-size-control" aria-label="Logoyu yüzde 5 büyüt" title="Her tıklamada %5 büyüt">
       <svg viewBox="0 0 60 82" aria-hidden="true">
         <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stop-color="#3FE0CC"/><stop offset="55%" stop-color="#12A394"/><stop offset="100%" stop-color="#0A5F56"/>
@@ -339,7 +344,7 @@ header .logo{transform:scale(1.1);transform-origin:left center;margin-right:14px
         <path d="M28 70 L36 73 L30 80 Z" fill="url(#lg)" opacity=".7"/>
       </svg>
       <span class="logo-txt">TECHWAY<span>Otomasyon</span></span>
-    </a>
+    </button>
     <nav class="main" id="nav">
       <a href="#/urunler">Ürünler</a>
       <a href="#/cozumler">Çözümler</a>
@@ -359,6 +364,7 @@ header .logo{transform:scale(1.1);transform-origin:left center;margin-right:14px
     <a href="#/iletisim" class="btn btn-p btn-sm" style="margin-left:14px">Demo Talep Et</a>
   </div>
 </header>
+<div id="logo-size-panel" hidden><span id="logo-size-status" role="status"></span><button type="button" id="logo-size-reset">Sıfırla</button></div>
 
 <div id="app"></div>
 
@@ -668,11 +674,6 @@ function pImg(p,cls){return `<img class="${cls}" src="${PRODUCT_IMAGES[p.id]}" a
 
 /* ============ SOLUTIONS DATA ============ */
 const SOL=[
- {id:'paletleme',name:'Paletleme',icon:'▦',
-  short:'Vardiya sonuna doğru düşen tempo, bel ve sırt kaynaklı iş göremezlik, personel bulamama.',
-  body:'Paletleme, Türkiye\'de kobot yatırımının en hızlı geri döndüğü uygulamadır. Tekrarlı ağır kaldırma hem iş gücü devrini hem de meslek hastalığı riskini artırır. 12–20 kg kapasiteli bir kobot, standart Euro palet yüksekliğini tek konumdan kapsayarak vardiya boyunca sabit tempoda çalışır.',
-  models:['indy12','nuri12c','nuri20c','nuri30'],
-  metrics:[['Tipik çevrim','4–8 sn / kutu'],['Geri ödeme','8–14 ay'],['Devreye alma','2–4 hafta']]},
  {id:'tezgah-besleme',name:'Tezgâh Besleme',icon:'⬡',
   short:'CNC tezgâh başında bekleyen operatör, vardiya dışı duran tezgâh, tutarsız yükleme süresi.',
   body:'Tezgâh besleme, kobotun en doğrudan katma değer ürettiği uygulamadır. Operatörün tezgâh başında beklemesi yerine kobot yükleme-boşlatma yapar, operatör kalite kontrol ve çoklu tezgâh yönetimine kayar. Işıksız vardiya (lights-out) çalışma mümkün hale gelir.',
@@ -683,21 +684,26 @@ const SOL=[
   body:'Türkiye metal işleme sektöründe kalifiye kaynakçı açığı yapısal bir sorundur. OPTi serisi kobotlar kaynak uygulamasına özel geliştirilmiş olup, torç entegrasyonu ve dikiş öğretme fabrika çıkışı hazır gelir. Küçük parti ve yüksek çeşitlilikte, klasik kaynak robotlarının programlama süresi nedeniyle karşılayamadığı işler kobotla karşılanabilir hale gelir.',
   models:['opti5','nuri12c'],
   metrics:[['Dikiş tutarlılığı','Operatörden bağımsız'],['Geri ödeme','12–18 ay'],['Devreye alma','4–6 hafta']]},
- {id:'montaj',name:'Montaj ve Vidalama',icon:'✚',
-  short:'Yüksek tekrarlı montaj adımları, tork tutarsızlığı, izlenebilirlik eksikliği.',
-  body:'Vidalama ve hassas montaj, kuvvet geri beslemeli kobotların güçlü olduğu alandır. Empedans kontrolü sayesinde parça oturmadığında robot zorlamaz, geri çekilir ve hata kaydı üretir. Her bir vidalama işleminin torku kaydedilerek izlenebilirlik sağlanır.',
-  models:['indy7','nuri5s','icon7l'],
-  metrics:[['Tork izlenebilirliği','%100 kayıt'],['Geri ödeme','12–20 ay'],['Devreye alma','3–6 hafta']]},
  {id:'kalite-kontrol',name:'Kalite Kontrol',icon:'◎',
   short:'Örnekleme bazlı kontrol, insan kaynaklı değişkenlik, geç fark edilen hatalar.',
   body:'Kobot ve makine görüşü birlikte kullanıldığında, numune bazlı kontrolden %100 kontrole geçilebilir. Robot parçayı kameraya birden fazla açıdan sunar; sonuç MES sistemine yazılır. Hatalı parça hattın sonunda değil, oluştuğu istasyonda yakalanır.',
   models:['indy7','nuri5s','delta'],
   metrics:[['Kontrol kapsamı','Örneklemeden %100\'e'],['Geri ödeme','14–22 ay'],['Devreye alma','4–8 hafta']]},
+ {id:'montaj',name:'Montaj ve Vidalama',icon:'✚',
+  short:'Yüksek tekrarlı montaj adımları, tork tutarsızlığı, izlenebilirlik eksikliği.',
+  body:'Vidalama ve hassas montaj, kuvvet geri beslemeli kobotların güçlü olduğu alandır. Empedans kontrolü sayesinde parça oturmadığında robot zorlamaz, geri çekilir ve hata kaydı üretir. Her bir vidalama işleminin torku kaydedilerek izlenebilirlik sağlanır.',
+  models:['indy7','nuri5s','icon7l'],
+  metrics:[['Tork izlenebilirliği','%100 kayıt'],['Geri ödeme','12–20 ay'],['Devreye alma','3–6 hafta']]},
  {id:'paketleme',name:'Paketleme ve Toplama',icon:'▤',
   short:'Yüksek hızlı bant üzerinde rastgele konumlu ürün toplama.',
   body:'Gıda, ilaç ve kozmetik hatlarında yüksek çevrim hızı gerektiren toplama-yerleştirme işleri için delta robotlar, daha düşük hızlı ama esnek işler için kobotlar kullanılır. Vizyon entegrasyonu ile bant üzerinde rastgele gelen ürünler izlenerek toplanır.',
   models:['delta','icon7l','nuri5s'],
-  metrics:[['Çevrim hızı','Delta ile 100+ toplama/dk'],['Geri ödeme','10–18 ay'],['Devreye alma','4–8 hafta']]}
+  metrics:[['Çevrim hızı','Delta ile 100+ toplama/dk'],['Geri ödeme','10–18 ay'],['Devreye alma','4–8 hafta']]},
+ {id:'paletleme',name:'Paletleme',icon:'▦',
+  short:'Vardiya sonuna doğru düşen tempo, bel ve sırt kaynaklı iş göremezlik, personel bulamama.',
+  body:'Paletleme, Türkiye\'de kobot yatırımının en hızlı geri döndüğü uygulamadır. Tekrarlı ağır kaldırma hem iş gücü devrini hem de meslek hastalığı riskini artırır. 12–20 kg kapasiteli bir kobot, standart Euro palet yüksekliğini tek konumdan kapsayarak vardiya boyunca sabit tempoda çalışır.',
+  models:['indy12','nuri12c','nuri20c','nuri30'],
+  metrics:[['Tipik çevrim','4–8 sn / kutu'],['Geri ödeme','8–14 ay'],['Devreye alma','2–4 hafta']]}
 ];
 
 /* ============ HELPERS ============ */
@@ -1264,12 +1270,12 @@ function cozum(id){
  </div></section>${ctaBand()}`}
 
 function hizmetler(){
- const H=[['Kurulum ve Entegrasyon','Saha etüdünden SAT\'a kadar tanımlı bir metodoloji. Mekanik ve elektrik entegrasyon, PLC ve MES bağlantısı, çevrim optimizasyonu.','2–6 hafta'],
+ const H=[['Fizibilite','Uygulamanızın kobota uygun olup olmadığını en baştan netleştiren çalışma. Çevrim, tutucu, güvenlik ve geri ödeme analizi.','1–2 hafta'],
  ['Uygulama Geliştirme','Kutu robot satmıyoruz. Tutucu seçimi, vizyon entegrasyonu, özel fikstür tasarımı ve uygulama yazılımı Techway mühendisliğinde yapılır.','Proje bazlı'],
+ ['Kurulum ve Entegrasyon','Saha etüdünden SAT\'a kadar tanımlı bir metodoloji. Mekanik ve elektrik entegrasyon, PLC ve MES bağlantısı, çevrim optimizasyonu.','2–6 hafta'],
  ['Eğitim ve Sertifikasyon','Operatör, programcı, bakım ve entegratör seviyelerinde Türkçe eğitim. Sahada veya demo merkezinde.','1–3 gün'],
  ['Teknik Destek','Uzaktan tanı ve saha müdahalesi. Servis seviyesi anlaşmasına göre tanımlı müdahale süreleri. Gerektiğinde Kore mühendisliğine eskalasyon.','SLA\'ya göre'],
- ['Yedek Parça ve Bakım','Kritik parçalar Türkiye stoğunda. Önleyici bakım sözleşmeleri, kalibrasyon ve revizyon hizmeti.','Sözleşmeli'],
- ['Fizibilite Çalışması','Uygulamanızın kobota uygun olup olmadığını en baştan netleştiren çalışma. Çevrim, tutucu, güvenlik ve geri ödeme analizi.','1–2 hafta']];
+ ['Yedek Parça ve Bakım','Kritik parçalar Türkiye stoğunda. Önleyici bakım sözleşmeleri, kalibrasyon ve revizyon hizmeti.','Sözleşmeli']];
  return `<section style="padding:52px 0 0"><div class="wrap">
    <div class="eyebrow">Hizmetler</div>
    <h1 style="font-size:clamp(1.9rem,4vw,3rem);margin-bottom:14px">Satıştan sonrası asıl iş</h1>
@@ -1518,6 +1524,14 @@ function bind(){
    ss.oninput=cs.oninput=is.oninput=upd; upd();
  }
 }
+const logoControl=document.getElementById('logo-size-control');
+let logoScale=1.1;
+function updateLogoSize(){
+ logoControl.style.transform='scale('+logoScale+')';
+ document.getElementById('logo-size-status').textContent='Logo boyutu: %'+(logoScale*100).toLocaleString('tr-TR',{maximumFractionDigits:1});
+}
+logoControl.onclick=()=>{logoScale*=1.05;updateLogoSize();document.getElementById('logo-size-panel').hidden=false};
+document.getElementById('logo-size-reset').onclick=()=>{logoScale=1.1;updateLogoSize()};
 const themeToggle=document.getElementById('theme-toggle');
 function syncThemeToggle(){
  const label=document.documentElement.dataset.theme==='light'?'Koyu mod':'Açık mod';
