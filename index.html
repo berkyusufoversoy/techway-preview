@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Techway Otomasyon — Neuromeka Türkiye Resmi Partneri</title>
+<title>Techway Otomasyon — Robotik Otomasyon Çözümleri</title>
 <script>
 // Apply the saved theme before the page paints; keep dark as the original default.
 try {
@@ -73,7 +73,7 @@ nav.main a.on{color:var(--teal)}
 .btn-g:hover{border-color:var(--teal);color:var(--teal)}
 .btn-sm{padding:8px 15px;font-size:.8rem}
 .burger{display:none;margin-left:auto;background:none;border:1px solid var(--line2);color:var(--text);border-radius:6px;padding:8px 11px;cursor:pointer;font-size:1.1rem}
-@media(max-width:1200px){
+@media(max-width:1400px){
   nav.main{display:none;position:absolute;top:72px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--line);
     flex-direction:column;align-items:stretch;padding:12px;gap:2px;max-height:70vh;overflow-y:auto}
   nav.main.open{display:flex}
@@ -291,12 +291,19 @@ footer li a:hover{color:var(--teal)}
 .theme-toggle svg{width:18px;height:18px}
 .theme-toggle .moon,:root[data-theme="light"] .theme-toggle .sun{display:none}
 :root[data-theme="light"] .theme-toggle .moon{display:block}
-@media(min-width:1201px){.hdr{gap:14px}nav.main a{padding-left:9px;padding-right:9px}.theme-label{display:none}}
-@media(max-width:1200px){.theme-toggle{margin-left:auto}.burger{margin-left:0}}
+@media(min-width:1401px){.hdr{gap:14px}nav.main a{padding-left:9px;padding-right:9px}.theme-label{display:none}}
+@media(max-width:1400px){.theme-toggle{margin-left:auto}.burger{margin-left:0}}
 @media(max-width:420px){.hdr{gap:12px;padding:0 16px}.theme-label{display:none}}
 
 /* Header branding scales uniformly, including the wordmark. */
-header .logo{transform:scale(1.1);transform-origin:left center;margin-right:14px}
+header .logo{transform:scale(2.2);transform-origin:left center;margin-right:0}
+.header-logo-slot{width:294px;height:75px;display:flex;align-items:center;flex-shrink:0}
+:root{--header-height:100px}
+.hdr{height:var(--header-height)}
+html{scroll-padding-top:calc(var(--header-height) + env(safe-area-inset-top,0px))}
+.anchor-nav{top:calc(var(--header-height) + env(safe-area-inset-top,0px))}
+@media(max-width:1400px){nav.main{top:var(--header-height)}}
+@media(max-width:600px){:root{--header-height:149px}.hdr{flex-wrap:wrap;justify-content:flex-end;gap:8px;padding:10px 16px}.header-logo-slot{margin-right:auto;flex-basis:100%}.hdr .theme-toggle{margin-left:0}}
 .video-heading{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
 .video-heading h2{margin-bottom:12px}
 .video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
@@ -319,11 +326,6 @@ header .logo{transform:scale(1.1);transform-origin:left center;margin-right:14px
 .video-card[hidden]{display:none}
 @media(max-width:940px){.video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.video-grid{grid-template-columns:1fr}}
-header button.logo{border:0;padding:0;background:none;color:inherit;font:inherit;text-align:left;cursor:zoom-in}
-header button.logo:focus-visible{outline:2px solid var(--teal);outline-offset:5px}
-#logo-size-panel{position:fixed;right:16px;bottom:16px;z-index:100;display:flex;gap:16px;align-items:center;padding:12px 16px;background:var(--surface);color:var(--text);border:1px solid var(--line2);border-radius:10px;box-shadow:0 8px 30px #0003;font-size:.82rem}
-#logo-size-panel[hidden]{display:none}
-#logo-size-reset{padding:7px 11px;border:1px solid var(--line2);border-radius:5px;color:var(--text);background:var(--surface2);cursor:pointer}
 </style>
 </head>
 <body>
@@ -331,7 +333,7 @@ header button.logo:focus-visible{outline:2px solid var(--teal);outline-offset:5p
 
 <header>
   <div class="hdr">
-    <button type="button" class="logo" id="logo-size-control" aria-label="Logoyu yüzde 5 büyüt" title="Her tıklamada %5 büyüt">
+    <span class="header-logo-slot"><a href="#/" class="logo" aria-label="Techway ana sayfa">
       <svg viewBox="0 0 60 82" aria-hidden="true">
         <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stop-color="#3FE0CC"/><stop offset="55%" stop-color="#12A394"/><stop offset="100%" stop-color="#0A5F56"/>
@@ -344,7 +346,7 @@ header button.logo:focus-visible{outline:2px solid var(--teal);outline-offset:5p
         <path d="M28 70 L36 73 L30 80 Z" fill="url(#lg)" opacity=".7"/>
       </svg>
       <span class="logo-txt">TECHWAY<span>Otomasyon</span></span>
-    </button>
+    </a></span>
     <nav class="main" id="nav">
       <a href="#/urunler">Ürünler</a>
       <a href="#/cozumler">Çözümler</a>
@@ -364,7 +366,6 @@ header button.logo:focus-visible{outline:2px solid var(--teal);outline-offset:5p
     <a href="#/iletisim" class="btn btn-p btn-sm" style="margin-left:14px">Demo Talep Et</a>
   </div>
 </header>
-<div id="logo-size-panel" hidden><span id="logo-size-status" role="status"></span><button type="button" id="logo-size-reset">Sıfırla</button></div>
 
 <div id="app"></div>
 
@@ -380,8 +381,8 @@ header button.logo:focus-visible{outline:2px solid var(--teal);outline-offset:5p
           </svg>
           <span class="logo-txt">TECHWAY<span>Otomasyon</span></span>
         </div>
-        <p class="muted" style="font-size:.87rem;max-width:34ch">Neuromeka kobot ve endüstriyel robot ürünlerinin Türkiye tek yetkili ana partneri. Satış, entegrasyon, eğitim ve teknik destek.</p>
-        <div style="margin-top:18px"><span class="tag t">Neuromeka Resmi Partner</span></div>
+        <p class="muted" style="font-size:.87rem;max-width:34ch">Techway kobot ve endüstriyel robot ürünlerinin Türkiye tek yetkili ana partneri. Satış, entegrasyon, eğitim ve teknik destek.</p>
+        <div style="margin-top:18px"><span class="tag t">Techway Robotik Çözümler</span></div>
       </div>
       <div><h4>Ürünler</h4><ul>
         <li><a href="#/urun/indy7">Indy Serisi</a></li><li><a href="#/urun/nuri12c">NURI Serisi</a></li>
@@ -395,7 +396,7 @@ header button.logo:focus-visible{outline:2px solid var(--teal);outline-offset:5p
         <li><a href="#/videolar">Video Kütüphanesi</a></li><li><a href="#/kaynaklar">İndirmeler</a></li><li><a href="#/iletisim">İletişim</a></li></ul></div>
     </div>
     <div class="f-bot">
-      <span>© 2026 Techway Otomasyon. Neuromeka Co., Ltd. Türkiye Yetkili Partneri.</span>
+      <span>© 2026 Techway Otomasyon. Tüm hakları saklıdır.</span>
       <span>KVKK · Gizlilik · Çerez Politikası</span>
     </div>
   </div>
@@ -501,10 +502,10 @@ function boxSVG(){return `<svg viewBox="0 0 200 200" fill="none">${MET}
 /* Tek şablon, tek veri modeli. CMS bağlandığında bu dizi API'den gelir. */
 const P = [
  {id:'indy7',name:'Indy7',fam:'Indy',famName:'Indy Serisi',type:'kobot',vis:armSVG,
-  role:'Neuromeka\'nın amiral gemisi kobotu. KOBİ\'ler için ilk endüstriyel robot.',
+  role:'Techway’in amiral gemisi kobotu. KOBİ\'ler için ilk endüstriyel robot.',
   payload:7,reach:800,rep:0.1,weight:28,dof:6,ip:'IP54',verified:true,
   apps:['tezgah-besleme','paletleme','montaj'],
-  intro:'Indy7, Neuromeka\'nın kendi tasarlayıp ürettiği ilk kobot ailesinin amiral gemisidir. Çarpışma algılama algoritması operatör güvenliğini donanımsal bariyer olmadan sağlar; empedans kontrolü sayesinde robot elle tutulup istenen pozisyona götürülerek programlanabilir. Android tablet tabanlı CONTY öğretme arayüzü ile bir üretim operatörü, robot programcısı olmadan hücreyi devreye alabilir.',
+  intro:'Indy7, Techway ürün portföyündeki Indy kobot ailesinin amiral gemisidir. Çarpışma algılama algoritması operatör güvenliğini donanımsal bariyer olmadan sağlar; empedans kontrolü sayesinde robot elle tutulup istenen pozisyona götürülerek programlanabilir. Android tablet tabanlı CONTY öğretme arayüzü ile bir üretim operatörü, robot programcısı olmadan hücreyi devreye alabilir.',
   specs:[
    ['Serbestlik derecesi (DOF)','6 (tümü döner)'],['Taşıma kapasitesi','7 kg'],['Maksimum erişim','800 mm'],
    ['Tekrarlanabilirlik','±0,1 mm (100 µm)'],['Robot ağırlığı','28 kg'],
@@ -541,7 +542,7 @@ const P = [
   role:'IP67 korumalı, tüm eksenlerde tork sensörlü yüksek kapasiteli kobot.',
   payload:12,reach:1300,rep:0.03,weight:null,dof:6,ip:'IP67',verified:'partial',
   apps:['paletleme','kaynak','tezgah-besleme','kalite-kontrol'],
-  intro:'NURI C Serisi, Neuromeka\'nın yüksek kapasiteli kobot ailesidir. Tüm eksenlerde eklem tork sensörü bulunması, çarpışmalara ve dış kuvvetlere klasik akım tabanlı sistemlerden çok daha hassas tepki verilmesini sağlar. IP67 koruma sınıfı ile su ve toz maruziyetinin olduğu ortamlarda — yıkama hatları, talaşlı imalat, gıda üretimi — doğrudan çalışabilir. Endüstriyel robot seviyesinde yörünge hassasiyeti sunar.',
+  intro:'NURI C Serisi, Techway’in yüksek kapasiteli kobot ailesidir. Tüm eksenlerde eklem tork sensörü bulunması, çarpışmalara ve dış kuvvetlere klasik akım tabanlı sistemlerden çok daha hassas tepki verilmesini sağlar. IP67 koruma sınıfı ile su ve toz maruziyetinin olduğu ortamlarda — yıkama hatları, talaşlı imalat, gıda üretimi — doğrudan çalışabilir. Endüstriyel robot seviyesinde yörünge hassasiyeti sunar.',
   specs:[
    ['Serbestlik derecesi (DOF)','6 (tümü döner)'],['Taşıma kapasitesi','12 kg'],
    ['Maksimum erişim','1.300 mm'],['Tekrarlanabilirlik','±0,03 mm'],
@@ -574,11 +575,11 @@ const P = [
   role:'30 kg sınıfı ağır hizmet kobotu.',
   payload:30,reach:null,rep:null,weight:null,dof:6,ip:null,verified:false,
   apps:['paletleme'],
-  intro:'NURI30, Neuromeka\'nın yüksek kapasiteli kobot segmentindeki en güçlü modelidir. Ağır paletleme, büyük döküm parça taşıma ve makine yükleme uygulamaları için tasarlanmıştır.',
+  intro:'NURI30, Techway’in yüksek kapasiteli kobot segmentindeki en güçlü modelidir. Ağır paletleme, büyük döküm parça taşıma ve makine yükleme uygulamaları için tasarlanmıştır.',
   specs:[['Serbestlik derecesi (DOF)','6'],['Taşıma kapasitesi','30 kg'],
-   ['Maksimum erişim','Neuromeka teknik dokümanından teyit edilecek'],
-   ['Tekrarlanabilirlik','Neuromeka teknik dokümanından teyit edilecek']],
-  feats:[['En yüksek kapasite','Neuromeka kobot ailesinin 30 kg sınıfı modeli.']]},
+   ['Maksimum erişim','Techway teknik dokümanından teyit edilecek'],
+   ['Tekrarlanabilirlik','Techway teknik dokümanından teyit edilecek']],
+  feats:[['En yüksek kapasite','Techway kobot ailesinin 30 kg sınıfı modeli.']]},
 
  {id:'nuri5s',name:'NURI5S',fam:'NURI S',famName:'NURI S Serisi',type:'kobot',vis:armSVG,
   role:'Kompakt, hafif hücreler için 5 kg sınıfı kobot.',
@@ -586,18 +587,18 @@ const P = [
   apps:['montaj','kalite-kontrol','paketleme'],
   intro:'NURI S Serisi, NURI ekosisteminin kompakt modelleridir. Masaüstü hücreler, elektronik montaj ve laboratuvar otomasyonu gibi alan kısıtlı uygulamalar için uygundur.',
   specs:[['Serbestlik derecesi (DOF)','6'],['Taşıma kapasitesi','5 kg'],
-   ['Maksimum erişim','Neuromeka teknik dokümanından teyit edilecek']],
+   ['Maksimum erişim','Techway teknik dokümanından teyit edilecek']],
   feats:[['Kompakt gövde','Dar hücrelerde ve masaüstü kurulumlarda kullanılabilir.']]},
 
  {id:'opti5',name:'OPTi5',fam:'OPTi',famName:'OPTi Kaynak Serisi',type:'kobot',vis:armSVG,
   role:'Kaynak uygulamaları için özelleştirilmiş kobot.',
   payload:5,reach:null,rep:null,weight:null,dof:6,ip:null,verified:false,
   apps:['kaynak'],
-  intro:'OPTi serisi, Neuromeka\'nın kaynak uygulamalarına özel geliştirdiği kobot ailesidir. Kaynak torcu entegrasyonu, kaynak dikişi öğretme ve kaynak makinesi haberleşmesi fabrika çıkışı hazır gelir. Türkiye\'de özellikle metal işleme ve makine imalatı sektöründe kalifiye kaynakçı bulma zorluğuna doğrudan cevap veren üründür.',
+  intro:'OPTi serisi, Techway portföyünde kaynak uygulamalarına özel sunulan kobot ailesidir. Kaynak torcu entegrasyonu, kaynak dikişi öğretme ve kaynak makinesi haberleşmesi fabrika çıkışı hazır gelir. Türkiye\'de özellikle metal işleme ve makine imalatı sektöründe kalifiye kaynakçı bulma zorluğuna doğrudan cevap veren üründür.',
   specs:[['Serbestlik derecesi (DOF)','6'],['Taşıma kapasitesi','5 kg'],
    ['Uygulama','MIG/MAG ve TIG kaynak'],
    ['Kaynak makinesi entegrasyonu','Techway tarafından proje bazlı yapılandırılır'],
-   ['Diğer teknik değerler','Neuromeka teknik dokümanından teyit edilecek']],
+   ['Diğer teknik değerler','Techway teknik dokümanından teyit edilecek']],
   feats:[['Kaynağa özel','Torç montajı, dikiş öğretme ve kaynak parametreleri entegre gelir.'],
    ['Kalifiye personel sorunu','Deneyimli kaynakçı bağımlılığını azaltır, dikiş kalitesini standartlaştırır.']]},
 
@@ -605,7 +606,7 @@ const P = [
   role:'Endüstriyel hızda çalışan, IP67 korumalı yeni nesil kobot.',
   payload:7,reach:null,rep:null,weight:null,dof:6,ip:'IP67',verified:'partial',
   apps:['paketleme','tezgah-besleme','montaj'],
-  intro:'ICoN, Neuromeka\'nın yeni nesil endüstriyel kobotudur. Indy serisinin güvenlik ve kullanım kolaylığını korurken, tipik kobotların 2,3 katı maksimum hıza ulaşır. Durum göstergeleri ve lazer tarayıcı gibi ek güvenlik cihazlarıyla, klasik endüstriyel robotlarda bulunmayan bir güvenlik seviyesi sunar. Dört adet pnömatik hat gövde içinden geçer.',
+  intro:'ICoN, Techway’in yeni nesil endüstriyel kobotudur. Indy serisinin güvenlik ve kullanım kolaylığını korurken, tipik kobotların 2,3 katı maksimum hıza ulaşır. Durum göstergeleri ve lazer tarayıcı gibi ek güvenlik cihazlarıyla, klasik endüstriyel robotlarda bulunmayan bir güvenlik seviyesi sunar. Dört adet pnömatik hat gövde içinden geçer.',
   specs:[['Serbestlik derecesi (DOF)','6'],['Taşıma kapasitesi','7 kg'],
    ['Hız','Tipik kobotların 2,3 katı (maksimum hız karşılaştırması)'],
    ['Koruma sınıfı','IP67'],['Pnömatik hat','4 adet entegre'],
@@ -619,9 +620,9 @@ const P = [
   role:'Otonom mobil robot platformu.',
   payload:null,reach:null,rep:null,weight:null,dof:null,ip:null,verified:false,
   apps:['tezgah-besleme','paketleme'],
-  intro:'Moby, Neuromeka\'nın otonom mobil robot platformudur. Fabrika içi malzeme taşıma, hat besleme ve kobot ile birleştirilerek mobil manipülasyon uygulamalarında kullanılır.',
+  intro:'Moby, Techway’in otonom mobil robot platformudur. Fabrika içi malzeme taşıma, hat besleme ve kobot ile birleştirilerek mobil manipülasyon uygulamalarında kullanılır.',
   specs:[['Tip','Otonom mobil robot (AMR)'],['Versiyon','Moby-RP v3.3'],
-   ['Teknik değerler','Neuromeka teknik dokümanından teyit edilecek']],
+   ['Teknik değerler','Techway teknik dokümanından teyit edilecek']],
   feats:[['Mobil manipülasyon','Kobot ile birleştirilerek hareketli robot hücresi oluşturulabilir.']]},
 
  {id:'delta',name:'LASER Delta',fam:'Delta',famName:'Delta LASER Serisi',type:'delta',vis:deltaSVG,
@@ -631,7 +632,7 @@ const P = [
   intro:'LASER serisi delta robotlar, küçük, orta ve büyük sınıflarda 4 eksenli yüksek hızlı toplama-yerleştirme uygulamaları için geliştirilmiştir. Gıda paketleme, ilaç ve elektronik sektörlerinde yüksek çevrim hızı gerektiren hatlarda kullanılır.',
   specs:[['Eksen sayısı','4'],['Sınıflar','Küçük / orta / büyük'],
    ['Uygulama','Yüksek hızlı toplama-yerleştirme'],
-   ['Teknik değerler','Neuromeka teknik dokümanından teyit edilecek']],
+   ['Teknik değerler','Techway teknik dokümanından teyit edilecek']],
   feats:[['Yüksek çevrim hızı','Dakikada yüzlerce toplama işlemi gerektiren hatlar için.'],
    ['Vizyon entegrasyonu','Bant üzerinden rastgele konumlu parça toplama.']]},
 
@@ -659,7 +660,7 @@ const P = [
   intro:'IndyCB 3.0, Indy kobot ailesinin kontrol ünitesidir. Güvenlik giriş/çıkışları, dijital ve analog I/O, saha veri yolu haberleşmesi ve robot kontrol yazılımını barındırır.',
   specs:[['Model','IndyCB 3.0'],['Uyumlu robotlar','Indy serisi'],
    ['Diğer kontrolcüler','IndyCB 2.0, NC15, NC30'],
-   ['Teknik değerler','Neuromeka teknik dokümanından teyit edilecek']],
+   ['Teknik değerler','Techway teknik dokümanından teyit edilecek']],
   feats:[['Saha entegrasyonu','Mevcut PLC ve SCADA altyapısına bağlanır.']]}
 ];
 
@@ -720,7 +721,7 @@ function ctaBand(){return `<section class="tight"><div class="wrap"><div class="
   </div></div></div></section>`}
 
 /* ============ PAGES ============ */
-/* Hero kolajı — Neuromeka amiral gemisi ürünleri.
+/* Hero kolajı — Techway amiral gemisi ürünleri.
    assets/products/<id>.png yüklendiğinde gerçek fotoğraflar devreye girer. */
 function heroCollage(){
  const it=[
@@ -776,7 +777,7 @@ const VIDEOS = [
     "products": [
       "opti5"
     ],
-    "description": "Neuromeka’nın kaynak odaklı OPTi serisi, ROBOTWORLD 2024."
+    "description": "Techway’in kaynak odaklı OPTi serisi, ROBOTWORLD 2024."
   },
   {
     "id": "P_vd3lbQMQ8",
@@ -806,7 +807,7 @@ const VIDEOS = [
     "products": [
       "delta"
     ],
-    "description": "Neuromeka Delta robot uygulaması; belirli bir LASER modeli için teknik referans değildir."
+    "description": "Techway Delta robot uygulaması; belirli bir LASER modeli için teknik referans değildir."
   },
   {
     "id": "ncMuhck4zGo",
@@ -891,22 +892,22 @@ const VIDEOS = [
   },
   {
     "id": "7oM9pFLBOqs",
-    "title": "Neuromeka dünyasına bir bakış",
-    "family": "Neuromeka",
+    "title": "Techway dünyasına bir bakış",
+    "family": "Techway",
     "kind": "Kurumsal",
     "products": [],
-    "description": "Neuromeka’nın 2025 kurumsal tanıtım videosu."
+    "description": "Techway portföyündeki robotların üreticisinden 2025 tanıtım videosu."
   }
 ];
 function videoCard(v){return `<article class="video-card" data-video-family="${v.family}">
  <div class="video-screen"><button type="button" data-play-video="${v.id}" aria-label="${v.title} videosunu oynat"><img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="video-play" aria-hidden="true"><span>▶</span></span></button></div>
- <div class="video-copy"><span class="tag t">${v.family} · ${v.kind}</span><h3>${v.title}</h3><p>${v.description}</p><a class="video-source" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener noreferrer">Neuromeka · YouTube’da izle ↗</a></div>
+ <div class="video-copy"><span class="tag t">${v.family} · ${v.kind}</span><h3>${v.title}</h3><p>${v.description}</p><a class="video-source" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener noreferrer">Techway · YouTube’da izle ↗</a></div>
  </article>`}
 function videoSection(product){
  const list=product?VIDEOS.filter(v=>v.products.includes(product.id)):['RD_SbjhPzIA','9vY9vqZXTmU','NnTQ_H4Gi8U'].map(id=>VIDEOS.find(v=>v.id===id));
- return `<section class="tight" id="videolar"><div class="wrap"><div class="video-heading"><div><div class="eyebrow">Hareket halinde</div><h2>${product?product.name+' video galerisi':'Robotları iş başında izleyin'}</h2><p class="lede">Neuromeka’nın resmi kanalından ${product?'ürün ailesi ve uygulama videoları.':'gerçek uygulamalar, ürün tanıtımları ve otomasyon örnekleri.'}</p></div><a class="btn btn-g" href="#/videolar">Tüm videolar →</a></div><div class="video-grid">${list.map(videoCard).join('')}</div></div></section>`;
+ return `<section class="tight" id="videolar"><div class="wrap"><div class="video-heading"><div><div class="eyebrow">Hareket halinde</div><h2>${product?product.name+' video galerisi':'Robotları iş başında izleyin'}</h2><p class="lede">Techway video seçkisinden ${product?'ürün ailesi ve uygulama videoları.':'gerçek uygulamalar, ürün tanıtımları ve otomasyon örnekleri.'}</p></div><a class="btn btn-g" href="#/videolar">Tüm videolar →</a></div><div class="video-grid">${list.map(videoCard).join('')}</div></div></section>`;
 }
-function videolar(){return `<section><div class="wrap"><div class="eyebrow">Neuromeka / Video kütüphanesi</div><h1>Otomasyonu hareket halinde görün.</h1><p class="lede" style="margin-top:20px">Ürünleri tanıyın, gerçek uygulamaları keşfedin. Neuromeka’nın resmi YouTube kanalından seçilen videoları burada izleyin.</p><a class="video-source" href="https://www.youtube.com/@neuromeka" target="_blank" rel="noopener noreferrer">Resmi YouTube kanalını ziyaret edin ↗</a>
+function videolar(){return `<section><div class="wrap"><div class="eyebrow">Techway / Video kütüphanesi</div><h1>Otomasyonu hareket halinde görün.</h1><p class="lede" style="margin-top:20px">Ürünleri tanıyın, gerçek uygulamaları keşfedin. Techway video seçkisindeki videoları burada izleyin.</p><a class="video-source" href="https://www.youtube.com/@neuromeka" target="_blank" rel="noopener noreferrer">Video kaynağını YouTube’da ziyaret edin ↗</a>
  <div class="video-toolbar"><label>Ürün ailesi<select id="video-family"><option value="all">Tüm aileler</option>${[...new Set(VIDEOS.map(v=>v.family))].map(f=>'<option>'+f+'</option>').join('')}</select></label><label>Video ara<input id="video-search" type="text" placeholder="Ürün, uygulama veya konu"></label></div><p class="video-count" id="video-count" aria-live="polite">${VIDEOS.length} video</p><div class="video-grid" id="video-library">${VIDEOS.map(videoCard).join('')}</div><p id="video-empty" class="muted" hidden>Bu aramayla eşleşen video yok. Farklı bir ürün ailesi veya kelime deneyin.</p></div></section>`}
 function bindVideos(){
  document.querySelectorAll('[data-play-video]').forEach(button=>button.onclick=()=>{
@@ -939,7 +940,7 @@ function home(){
      </div>
    </div>
  <div class="stat-strip">
-   <div><div class="n grad-text">12+</div><div class="l">Neuromeka ürün modeli</div></div>
+   <div><div class="n grad-text">12+</div><div class="l">Techway ürün modeli</div></div>
    <div><div class="n grad-text">±0,03</div><div class="l">mm tekrarlanabilirlik (NURI C)</div></div>
    <div><div class="n grad-text">IP67</div><div class="l">Yıkanabilir ortam koruması</div></div>
    <div><div class="n grad-text">TR</div><div class="l">Yerinde kurulum ve destek</div></div>
@@ -980,7 +981,7 @@ function home(){
  <section class="tight"><div class="wrap"><div class="grid g2" style="gap:28px;align-items:center">
    <div>
      <div class="eyebrow">Bayilik</div>
-     <h2 style="margin-bottom:16px">Neuromeka ürünlerini bölgenizde temsil edin</h2>
+     <h2 style="margin-bottom:16px">Techway ürünlerini bölgenizde temsil edin</h2>
      <p class="lede">Türkiye genelinde alt bayi ağımızı kuruyoruz. Otomasyon bayileri, sistem entegratörleri ve makine üreticileri için ürün eğitimi, demo ünitesi, satış öncesi mühendislik desteği ve teknik eskalasyon sağlıyoruz.</p>
      <a href="#/bayilik" class="btn btn-p" style="margin-top:20px">Bayilik Programı</a>
    </div>
@@ -1013,9 +1014,9 @@ function pCard(p){
 function urunler(){
  return `<section style="padding:52px 0 0"><div class="wrap">
    <div class="eyebrow">Ürün Kataloğu</div>
-   <h1 style="font-size:clamp(1.9rem,4vw,3rem);margin-bottom:14px">Neuromeka ürün ailesi</h1>
+   <h1 style="font-size:clamp(1.9rem,4vw,3rem);margin-bottom:14px">Techway ürün ailesi</h1>
    <p class="lede" style="margin-bottom:30px">Taşıma kapasitesi, erişim ve uygulamaya göre filtreleyin. Üç modeli yan yana karşılaştırın.</p>
-   ${note('Teknik değerlerin bir kısmı Neuromeka kamuya açık dokümanlarından alınmıştır. "Teyit edilecek" ibareli alanlar, Neuromeka teknik ekibinden master veri alındığında doldurulacaktır.')}
+   ${note('Teknik değerlerin bir kısmı Techway kamuya açık dokümanlarından alınmıştır. "Teyit edilecek" ibareli alanlar, Techway teknik ekibinden master veri alındığında doldurulacaktır.')}
    <div class="filters">
      <span class="f-label">Tip</span>
      <button class="chip on" data-f="type" data-v="all">Tümü</button>
@@ -1120,7 +1121,7 @@ function urun(id){
          <div><div class="v" id="pl-eff">—</div><div class="k">kg — bu mesafede kapasite</div></div>
          <div><div class="v" id="pl-net">—</div><div class="k">kg — net parça ağırlığı</div></div>
        </div>
-       <p style="font-size:.78rem;color:var(--dim);margin:16px 0 0">Bu hesap konsept amaçlı yaklaşık bir modeldir. Kesin değerler Neuromeka yük-mesafe eğrisinden okunur.</p>
+       <p style="font-size:.78rem;color:var(--dim);margin:16px 0 0">Bu hesap konsept amaçlı yaklaşık bir modeldir. Kesin değerler Techway yük-mesafe eğrisinden okunur.</p>
      </div>
      <div class="card" style="padding:24px">
        <svg viewBox="0 0 320 210" style="width:100%;height:auto">
@@ -1218,7 +1219,7 @@ function urun(id){
      ['Risk değerlendirmesini kim yapar?','Techway, kurulum kapsamında hücre bazlı risk değerlendirmesini yapar, kuvvet ve basınç ölçümlerini gerçekleştirir ve teknik dosyayı Türkçe teslim eder.'],
      ['Operatör eğitimi ne kadar sürer?','Temel operatör eğitimi tipik olarak 1 gündür. Programcı seviyesi 2–3 gün, bakım eğitimi 2 gündür. Eğitimler sahada veya Techway demo merkezinde verilebilir.'],
      ['Arıza durumunda ne oluyor?','Uzaktan tanı ile ilk müdahale yapılır. Gerekirse saha ekibi yönlendirilir. Servis seviyesi anlaşmanıza göre müdahale süreleri sözleşmede tanımlanır.'],
-     ['Garanti kim tarafından veriliyor?','Ürün garantisi Neuromeka tarafından verilir, Türkiye\'de Techway tarafından uygulanır. Garanti işlemleri için Kore ile muhatap olmanız gerekmez.'],
+     ['Garanti kim tarafından veriliyor?','Ürün garantisi Techway tarafından verilir, Türkiye\'de Techway tarafından uygulanır. Garanti işlemleri için Kore ile muhatap olmanız gerekmez.'],
      ['Tam bir çalışan hücre ne kadar tutar?','Robot kolun fiyatı toplam yatırımın yaklaşık yarısıdır. Tutucu, sehpa, güvenlik ekipmanı, besleme ve entegrasyon eklenir. Uygulamanıza özel tahmini aralık fizibilite çalışmasında verilir.'],
      ['Tavana veya duvara monte edilebilir mi?','Evet. Montaj yönü çalışma zarfını ve erişilebilir alanı değiştirir; saha etüdünde birlikte değerlendirilir.']]
      .map(q=>`<details class="acc"><summary>${q[0]}</summary><div class="ans">${q[1]}</div></details>`).join('')}
@@ -1279,7 +1280,7 @@ function hizmetler(){
  return `<section style="padding:52px 0 0"><div class="wrap">
    <div class="eyebrow">Hizmetler</div>
    <h1 style="font-size:clamp(1.9rem,4vw,3rem);margin-bottom:14px">Satıştan sonrası asıl iş</h1>
-   <p class="lede" style="margin-bottom:34px">Neuromeka robotlarını doğrudan ithal edebilirsiniz. Türkiye'de kuran, entegre eden, eğiten ve arıza anında sahaya gelen bir ekip alamazsınız.</p>
+   <p class="lede" style="margin-bottom:34px">Techway robotlarını doğrudan ithal edebilirsiniz. Türkiye'de kuran, entegre eden, eğiten ve arıza anında sahaya gelen bir ekip alamazsınız.</p>
    <div class="grid g3">${H.map(h=>`<div class="card">
      <h3 style="margin-bottom:10px">${h[0]}</h3>
      <p style="font-size:.88rem;color:var(--muted);margin:0 0 16px">${h[1]}</p>
@@ -1303,14 +1304,14 @@ function hizmetler(){
 function bayilik(){
  return `<section style="padding:52px 0 0"><div class="wrap">
    <div class="eyebrow">Bayilik Programı</div>
-   <h1 style="font-size:clamp(1.9rem,4vw,3rem);margin-bottom:16px">Neuromeka'yı bölgenizde temsil edin</h1>
+   <h1 style="font-size:clamp(1.9rem,4vw,3rem);margin-bottom:16px">Techway’i bölgenizde temsil edin</h1>
    <p class="lede" style="margin-bottom:34px">Türkiye genelinde alt bayi ağımızı kuruyoruz. Otomasyon bayileri, sistem entegratörleri ve makine üreticileri için açık bir program.</p>
    <div class="grid g2" style="gap:28px">
      <div class="card"><h3 style="margin-bottom:16px">Techway'in sağladıkları</h3>
        ${['Ürün eğitimi ve teknik sertifikasyon','Demo ünitesi erişimi','Satış öncesi mühendislik desteği','Türkçe pazarlama ve satış materyali','Bölgenize yönlendirilen talepler','Teknik eskalasyon ve arıza desteği','Türkiye yedek parça stoğuna erişim','Ortak müşteri ziyareti ve sunum desteği']
        .map(x=>`<div class="feat"><div class="ic">◆</div><div><b>${x}</b></div></div>`).join('')}</div>
      <div class="card"><h3 style="margin-bottom:16px">Bayiden beklenenler</h3>
-       ${['En az bir sertifikalı teknik personel','Bölgesinde aktif satış faaliyeti','İlk kademe servis kabiliyeti','Yıllık asgari hacim taahhüdü','Neuromeka marka kullanım kurallarına uyum','Müşteri ve proje kayıt disiplini']
+       ${['En az bir sertifikalı teknik personel','Bölgesinde aktif satış faaliyeti','İlk kademe servis kabiliyeti','Yıllık asgari hacim taahhüdü','Techway marka kullanım kurallarına uyum','Müşteri ve proje kayıt disiplini']
        .map(x=>`<div class="feat"><div class="ic">◇</div><div><b>${x}</b></div></div>`).join('')}</div>
    </div>
  </div></section>
@@ -1344,10 +1345,10 @@ function bayilik(){
  </div></div></section>`}
 
 function kaynaklar(){
- const D=[['PDF','Neuromeka Ürün Kataloğu (TR)','Techway tarafından hazırlanıyor','Serbest','v2026.01'],
- ['PDF','Neuromeka Ürün Kataloğu (EN)','Neuromeka master katalog','Serbest','v20251205'],
- ['PDF','Neuromeka F&B Kataloğu','Gıda ve servis uygulamaları','Serbest','—'],
- ['PDF','Neuromeka Kurumsal Tanıtım','Firma profili ve referanslar','Serbest','v20250731'],
+ const D=[['PDF','Techway Ürün Kataloğu (TR)','Techway tarafından hazırlanıyor','Serbest','v2026.01'],
+ ['PDF','Techway Ürün Kataloğu (EN)','Techway master katalog','Serbest','v20251205'],
+ ['PDF','Techway F&B Kataloğu','Gıda ve servis uygulamaları','Serbest','—'],
+ ['PDF','Techway Kurumsal Tanıtım','Firma profili ve referanslar','Serbest','v20250731'],
  ['STEP','Indy Serisi 3D CAD','Indy7, Indy7 Pro, Indy12, Indy12 Pro','E-posta ile','—'],
  ['STEP','NURI Serisi 3D CAD','NURI3S / 5S / 7C / 12C / 18C / 20C / 30','E-posta ile','—'],
  ['STEP','OPTi ve ICoN 3D CAD','OPTi3, OPTi5, ICoN3, ICoN7L','E-posta ile','—'],
@@ -1355,14 +1356,14 @@ function kaynaklar(){
  ['STEP','Uç İşlem Elemanı ve Sehpa','Indy7/Indy12 end tool, uzun ve kısa sehpa','E-posta ile','—'],
  ['PDF','Kullanım Kılavuzları (TR)','Model bazlı kurulum ve kullanım','Serbest','—'],
  ['PDF','CE Uygunluk Beyanları','ISO 10218-1 / ISO-TS 15066','Serbest','—'],
- ['ZIP','Neuromeka Marka Kılavuzu','Logo kullanım kuralları ve dosyalar','Serbest','—'],
+ ['ZIP','Techway Marka Kılavuzu','Logo kullanım kuralları ve dosyalar','Serbest','—'],
  ['PDF','Eğitim Programı Kataloğu','Operatör, programcı, bakım, entegratör','Serbest','2026'],
  ['XLSX','Model Karşılaştırma Tablosu','Tüm modeller tek tabloda','Serbest','—']];
  return `<section style="padding:52px 0 0"><div class="wrap">
    <div class="eyebrow">Kaynaklar</div>
    <h1 style="font-size:clamp(1.9rem,4vw,3rem);margin-bottom:14px">İndirme merkezi</h1>
    <p class="lede" style="margin-bottom:26px">Katalog, teknik veri sayfası, 3D CAD, kılavuz ve uygunluk belgeleri. Ürüne, doküman tipine ve dile göre filtrelenir.</p>
-   ${note('Neuromeka\'nın mevcut indirme sayfasında dosyalar S3, Google Drive ve Wix arşivleri arasında dağınık duruyor; sürüm etiketleri dosya adlarıyla uyuşmuyor. Techway sürümünde tüm dosyalar tek kütüphanede, sürüm ve tarih bilgisiyle tutulur.')}
+   ${note('Techway’in mevcut indirme sayfasında dosyalar S3, Google Drive ve Wix arşivleri arasında dağınık duruyor; sürüm etiketleri dosya adlarıyla uyuşmuyor. Techway sürümünde tüm dosyalar tek kütüphanede, sürüm ve tarih bilgisiyle tutulur.')}
    <div class="filters">
      <span class="f-label">Tip</span>
      <button class="chip on">Tümü</button><button class="chip">Katalog</button><button class="chip">Teknik veri</button>
@@ -1380,20 +1381,19 @@ function kurumsal(){
  return `<section style="padding:52px 0 0"><div class="wrap">
    <div class="eyebrow">Kurumsal</div>
    <h1 style="font-size:clamp(1.9rem,4vw,3rem);margin-bottom:16px">Techway Otomasyon</h1>
-   <p class="lede" style="font-size:1.1rem;margin-bottom:34px">Neuromeka Co., Ltd.'nin Türkiye tek yetkili ana partneri. İki işimiz var: Türkiye genelinde alt bayi ağı kurmak ve Neuromeka ürünlerini Türk müşterilerin ihtiyacına göre kurmak, entegre etmek, uyarlamak ve arkasında durmak.</p>
+   <p class="lede" style="font-size:1.1rem;margin-bottom:34px">Robotik otomasyon çözümleri ve yerel mühendislik desteği. İki işimiz var: Türkiye genelinde alt bayi ağı kurmak ve Techway ürünlerini Türk müşterilerin ihtiyacına göre kurmak, entegre etmek, uyarlamak ve arkasında durmak.</p>
    ${note('Bu bölümdeki kurumsal bilgiler Techway tarafından sağlanacak gerçek verilerle doldurulacaktır — kuruluş yılı, ekip, tesis, demo merkezi ve sertifikalar.')}
    <div class="grid g2" style="gap:44px;margin-top:10px">
      <div>
        <h2 style="margin-bottom:16px">Tek yetkili partner ne demek?</h2>
-       <p style="color:var(--muted)">Türkiye pazarında Neuromeka ürünlerinin ithalatı, satışı, bayi ağı yönetimi ve teknik desteğinden sorumlu tek kuruluşuz. Bu; garanti işlemlerinin Türkiye'de sonuçlandığı, yedek parçanın yerelde tutulduğu ve teknik eskalasyonun doğrudan Kore mühendisliğine açıldığı anlamına gelir.</p>
-       <p style="color:var(--muted)">Alt bayilerimiz Neuromeka ürünlerini kendi bölgelerinde satar; ürün, eğitim, teknik destek ve garanti süreçleri Techway üzerinden yürür.</p>
+       <p style="color:var(--muted)">Türkiye pazarında Techway ürünlerinin ithalatı, satışı, bayi ağı yönetimi ve teknik desteğinden sorumlu tek kuruluşuz. Bu; garanti işlemlerinin Türkiye'de sonuçlandığı, yedek parçanın yerelde tutulduğu ve teknik eskalasyonun doğrudan Kore mühendisliğine açıldığı anlamına gelir.</p>
+       <p style="color:var(--muted)">Alt bayilerimiz Techway ürünlerini kendi bölgelerinde satar; ürün, eğitim, teknik destek ve garanti süreçleri Techway üzerinden yürür.</p>
      </div>
      <div class="card">
-       <h3 style="margin-bottom:16px">Neuromeka hakkında</h3>
-       <div class="feat"><div class="ic">◆</div><div><b>Güney Kore merkezli</b><p>Seul merkez; Pohang, Daegu, Cheonan ofisleri. ABD, Vietnam ve Çin'de yurt dışı ofisleri.</p></div></div>
-       <div class="feat"><div class="ic">◆</div><div><b>Kendi bileşen üretimi</b><p>CORE akıllı aktüatörler dahil temel bileşenler %100 kendi geliştirmesi.</p></div></div>
-       <div class="feat"><div class="ic">◆</div><div><b>Geniş portföy</b><p>Kobot, delta robot, AMR, humanoid platform, aktüatör ve kontrol üniteleri.</p></div></div>
-       <div class="feat"><div class="ic">◆</div><div><b>Konumlandırma</b><p>"Robot as a Tool · Robot as a Service · Robots for Every Workplace"</p></div></div>
+       <h3 style="margin-bottom:16px">Techway hakkında</h3>
+       <div class="feat"><div class="ic">◆</div><div><b>Yerel mühendislik</b><p>Fizibilite, uygulama geliştirme, kurulum ve entegrasyon.</p></div></div>
+       <div class="feat"><div class="ic">◆</div><div><b>Eğitim ve destek</b><p>Eğitim, teknik destek, yedek parça ve bakım hizmetleri.</p></div></div>
+       <div class="feat"><div class="ic">◆</div><div><b>Geniş portföy</b><p>Kobot, delta robot, AMR, aktüatör ve kontrol üniteleri.</p></div></div>
      </div>
    </div>
  </div></section>${ctaBand()}`}
@@ -1524,16 +1524,6 @@ function bind(){
    ss.oninput=cs.oninput=is.oninput=upd; upd();
  }
 }
-const logoControl=document.getElementById('logo-size-control');
-let logoScale=1.1;
-function updateLogoSize(){
- logoControl.style.transform='scale('+logoScale+')';
- document.getElementById('logo-size-status').textContent='Logo büyümesi: %'+((logoScale/1.1-1)*100).toLocaleString('tr-TR',{maximumFractionDigits:1});
- logoControl.setAttribute('aria-label',logoScale>=2.2?'Logoyu başlangıç boyutuna döndür':'Logoyu yüzde 5 büyüt');
- logoControl.title=logoScale>=2.2?'Sonraki tıklama: başlangıç boyutuna dön':'Her tıklamada %5 büyüt; %100 büyümeden sonra sıfırla';
-}
-logoControl.onclick=()=>{logoScale=logoScale>=2.2?1.1:Math.min(2.2,logoScale*1.05);updateLogoSize();document.getElementById('logo-size-panel').hidden=false};
-document.getElementById('logo-size-reset').onclick=()=>{logoScale=1.1;updateLogoSize()};
 const themeToggle=document.getElementById('theme-toggle');
 function syncThemeToggle(){
  const label=document.documentElement.dataset.theme==='light'?'Koyu mod':'Açık mod';
